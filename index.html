@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Downloader</title>
+  <style>
+    /* CSS Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Video Downloader</h1>
+    <div class="input-section">
+      <input type="text" id="videoUrl" placeholder="Enter YouTube or TikTok video URL">
+      <button id="downloadBtn">Download Video</button>
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    // JavaScript Functionality
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+      const videoUrl = document.getElementById('videoUrl').value.trim();
+      const messageDiv = document.getElementById('message');
+
+      if (!videoUrl) {
+        messageDiv.textContent = "Please enter a valid URL.";
+        messageDiv.style.color = "red";
+        return;
+      }
+
+      // Check if the URL is from YouTube or TikTok
+      if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+        messageDiv.textContent = "Downloading YouTube video...";
+        messageDiv.style.color = "green";
+        downloadYouTubeVideo(videoUrl);
+      } else if (videoUrl.includes('tiktok.com')) {
+        messageDiv.textContent = "Downloading TikTok video...";
+        messageDiv.style.color = "green";
+        downloadTikTokVideo(videoUrl);
+      } else {
+        messageDiv.textContent = "Invalid URL. Please enter a YouTube or TikTok URL.";
+        messageDiv.style.color = "red";
+      }
+    });
+
+    function downloadYouTubeVideo(url) {
+      // Redirect to a third-party service for YouTube downloads
+      window.open(`https://yt1s.com/en?q=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function downloadTikTokVideo(url) {
+      // Redirect to a third-party service for TikTok downloads
+      window.open(`https://snaptik.app/en?url=${encodeURIComponent(url)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
